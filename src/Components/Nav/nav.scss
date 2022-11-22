@@ -1,0 +1,55 @@
+@use "../../sass/base/breakpoints";
+@use "../../sass/base/colors";
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: 90%;
+  max-width: 62.5rem;
+  padding: 6% 0;
+  margin: 0 auto;
+
+  &__logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (min-width: breakpoints.$l) {
+      justify-content: space-between;
+      flex-basis: 95%;
+      max-width: 37rem;
+    }
+  }
+
+  &__hamburger-icon {
+    cursor: pointer;
+    margin-right: 0.75rem;
+
+    @media screen and (min-width: breakpoints.$l) {
+      display: none;
+    }
+  }
+
+  &__user-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__cart-icon {
+    cursor: pointer;
+  }
+
+  &__user-avatar {
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+
+    &:active {
+      border-radius: 100%;
+      border: 2px solid colors.$orange;
+    }
+  }
+}

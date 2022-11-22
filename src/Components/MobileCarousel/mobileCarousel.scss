@@ -1,0 +1,38 @@
+@use "../../sass/base/colors";
+@use "../../sass/base/breakpoints";
+
+.carousel {
+  position: relative;
+  margin-bottom: 2rem;
+
+  @media screen and (min-width: breakpoints.$l) {
+    display: none;
+  }
+
+  &__img {
+    max-width: 100%;
+  }
+
+  &__button {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    padding: 1.25em;
+    transform: translateY(-50%);
+    border: 0;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
+
+    &--prev {
+      left: 1rem;
+      background-image: url("../../../public/images/icon-previous.svg");
+    }
+
+    &--next {
+      right: 1rem;
+      background-image: url("../../../public/images/icon-next.svg");
+    }
+  }
+}

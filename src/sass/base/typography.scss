@@ -1,0 +1,9 @@
+$font-1: "Kumbh Sans", sans-serif;
+
+$font-size-sm: clamp(0.8rem, 0.06vw + 0.79rem, 0.84rem);
+$font-size-base: clamp(1rem, 0.18vw + 0.96rem, 1.13rem);
+$font-size-md: clamp(1.25rem, 0.36vw + 1.18rem, 1.5rem);
+$font-size-lg: clamp(1.56rem, 0.62vw + 1.44rem, 2rem);
+$font-size-xl: clamp(1.95rem, 1.02vw + 1.75rem, 2.66rem);
+$font-size-xxl: clamp(2.44rem, 1.59vw + 2.12rem, 3.55rem);
+$font-size-xxxl: clamp(3.05rem, 2.4vw + 2.57rem, 4.73rem);

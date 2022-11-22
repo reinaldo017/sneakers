@@ -1,0 +1,39 @@
+@use "../../sass/base/breakpoints";
+@use "../../sass/base/colors";
+
+.desktop-carousel {
+  display: none;
+  width: 45%;
+
+  @media screen and (min-width: breakpoints.$l) {
+    display: block;
+  }
+
+  &__main-img {
+    max-width: 100%;
+    border-radius: 15px;
+  }
+
+  .thumbnails {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 2rem auto;
+
+    &__li {
+      width: 5.5rem;
+    }
+
+    &__img {
+      max-width: 100%;
+      border-radius: 10px;
+      cursor: pointer;
+
+      &--active {
+        border: 4px solid colors.$orange;
+        opacity: 0.4;
+      }
+    }
+  }
+}

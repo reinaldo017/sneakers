@@ -1,0 +1,32 @@
+@use "../../sass/base/colors";
+
+.quantity-selector {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-grow: 1;
+  width: 35%;
+  border: 0;
+  border-radius: 8px;
+  background-color: colors.$light-grayish-blue;
+
+  &__number {
+    font-weight: 700;
+    align-self: center;
+  }
+
+  &__button {
+    flex-basis: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+
+    :active {
+      opacity: 0.5;
+    }
+  }
+}

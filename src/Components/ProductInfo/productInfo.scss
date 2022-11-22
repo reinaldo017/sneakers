@@ -1,0 +1,81 @@
+@use "../../sass/base/colors";
+@use "../../sass/base/typography";
+@use "../../sass/base/breakpoints";
+
+.productInfo {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-columns: 1fr;
+  align-items: center;
+  width: 90%;
+  max-width: 440px;
+
+  @media screen and (min-width: breakpoints.$l) {
+    width: 45%;
+  }
+
+  &__manufacturer {
+    grid-column: 1 / span 6;
+    grid-row: 1 / 2;
+    margin-bottom: 1rem;
+    color: colors.$orange;
+  }
+
+  &__name {
+    grid-column: 1 / -1;
+    grid-row: 2 / 3;
+    font-size: typography.$font-size-lg;
+  }
+
+  &__description {
+    grid-column: 1/ -1;
+    grid-row: 3 / 5;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+    color: colors.$dark-grayish-blue;
+  }
+
+  &__price-container {
+    grid-column: 1 / span 6;
+    grid-row: 5 / 6;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__price {
+    font-size: typography.$font-size-lg;
+  }
+
+  &__discount {
+    font-weight: 700;
+    font-size: typography.$font-size-base;
+    color: colors.$orange;
+  }
+
+  &__price-before {
+    grid-column: 12 / span 1;
+    grid-row: 5 / 6;
+    margin: 0;
+    text-decoration: line-through;
+    font-size: typography.$font-size-base;
+    color: colors.$grayish-blue;
+
+    @media screen and (min-width: breakpoints.$m) {
+      grid-column: 1 / 2;
+      grid-row: 6 / 7;
+      margin-top: 0.5rem;
+    }
+  }
+
+  &__buttons {
+    grid-column: 1 / -1;
+    grid-row: 7 / 8;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+}
