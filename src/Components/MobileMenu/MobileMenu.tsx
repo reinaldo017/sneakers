@@ -1,15 +1,13 @@
-import { useContext } from "react"
-import { AppContext } from "../Context/AppContext"
 import Links from "../Links/Links"
 import "./mobileMenu.scss"
 
 type MobileMenuProps = {
+  linksNames: string[]
   visible: boolean
   toggleMenu: () => void
 }
 
-const MobileMenu = ({ visible, toggleMenu }: MobileMenuProps) => {
-  const { linksNames } = useContext(AppContext)
+const MobileMenu = ({ linksNames, visible, toggleMenu }: MobileMenuProps) => {
   const visibleClass = visible ? "--visible" : ""
   return (
     <>

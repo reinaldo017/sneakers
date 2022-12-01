@@ -1,41 +1,45 @@
 import { useState } from "react"
-import { ProductInfoProps } from "../../types/types"
-import CTA from "../CTA/CTA"
-import QuantitySelector from "../QuantitySelector/QuantitySelector"
-import "./productInfo.scss"
+import ProductInfoUI from "./ProductInfoUI"
+import { Image } from "../../types/types"
 
-const ProductInfo = ({ info, updateStock }: ProductInfoProps) => {
-  const [itemsSelected, setItemsSelected] = useState(0)
+type ProductType = {
+  name: string
+  description: string
+  price: number
+  discount: number
+  stock: number
+  images: Image[]
+}
+
+type ProductInfoProps = {
+  product: ProductType
+  addToCart: (product: ProductType, quantity: number) => void
+}
+
+const ProductInfo = ({ product, addToCart }: ProductInfoProps) => {
+  const [itemsSelected, setItemsSelected] = useState(1)
 
   const addItem = () => {
-    setItemsSelected((prev) => (prev + 1 > info.stock ? prev : prev + 1))
+    setItemsSelected((prev) => (prev + 1 > product.stock ? prev : prev + 1))
   }
 
   const removeItem = () => {
     setItemsSelected((prev) => (prev - 1 < 0 ? prev : prev - 1))
   }
 
-  const finalPrice = ((100 - info?.discount) / 100) * info.price
+  const finalPrice = product.discount
+    ? ((100 - product.discount) / 100) * product.price
+    : product.price
 
   return (
-    <section className='productInfo'>
-      <h6 className='productInfo__manufacturer'>SNEAKER COMPANY</h6>
-      <h1 className='productInfo__name'>{info.name}</h1>
-      <p className='productInfo__description'>{info.description}</p>
-      <div className='productInfo__price-container'>
-        <h2 className='productInfo__price'>{`$${finalPrice}`}</h2>
-        <span className='productInfo__discount'>{`${info.discount}%`}</span>
-      </div>
-      <h6 className='productInfo__price-before'>{`$${info.price}`}</h6>
-      <footer className='productInfo__buttons'>
-        <QuantitySelector
-          itemsSelected={itemsSelected}
-          addItem={addItem}
-          removeItem={removeItem}
-        />
-        <CTA content='Add to cart' icon='./images/icon-cart.svg' />
-      </footer>
-    </section>
+    <ProductInfoUI
+      product={product}
+      itemsSelected={itemsSelected}
+      addToCart={addToCart}
+      addItem={addItem}
+      removeItem={removeItem}
+      finalPrice={finalPrice}
+    />
   )
 }
 

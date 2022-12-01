@@ -33,11 +33,13 @@ const ProductImage = ({ images }: ProductImageProps) => {
   return (
     <>
       <MobileCarousel
+        images={images}
         activeImageIndex={activeImageIndex}
         handleNextSlide={handleNextSlide}
         handlePrevSlide={handlePrevSlide}
       />
       <DesktopCarousel
+        images={images}
         activeImageIndex={activeImageIndex}
         handleSlideChange={handleSlideChange}
       />

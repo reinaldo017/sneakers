@@ -1,15 +1,19 @@
-import { useContext } from "react"
-import { MobileCarouselProps } from "../../types/types"
-import { ProductContext } from "../Context/ProductContext"
+import { Image } from "../../types/types"
 import "./mobileCarousel.scss"
 
+type MobileCarouselProps = {
+  images: Image[]
+  activeImageIndex: number
+  handleNextSlide: () => void
+  handlePrevSlide: () => void
+}
+
 const MobileCarousel = ({
+  images,
   activeImageIndex,
   handleNextSlide,
   handlePrevSlide,
 }: MobileCarouselProps) => {
-  const { images } = useContext(ProductContext)
-
   return (
     <div className='carousel'>
       <img

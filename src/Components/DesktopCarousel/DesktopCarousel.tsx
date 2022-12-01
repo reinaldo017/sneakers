@@ -1,14 +1,17 @@
-import { useContext } from "react"
-import { DesktopCarouselProps } from "../../types/types"
-import { ProductContext } from "../Context/ProductContext"
+import { Image } from "../../types/types"
 import "./desktopCarousel.scss"
 
+type DesktopCarouselProps = {
+  images: Image[]
+  activeImageIndex: number
+  handleSlideChange: (imageIndex: number) => void
+}
+
 const DesktopCarousel = ({
+  images,
   activeImageIndex,
   handleSlideChange,
 }: DesktopCarouselProps) => {
-  const { images } = useContext(ProductContext)
-
   const availableImages = images.map((image, index) => {
     const activeStyles =
       index === activeImageIndex ? "thumbnails__img--active" : ""

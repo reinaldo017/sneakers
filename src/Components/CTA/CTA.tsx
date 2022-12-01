@@ -1,9 +1,14 @@
-import { CTAProps } from "../../types/types"
 import "./cta.scss"
 
-const CTA = ({ content, icon }: CTAProps) => {
+type CTAProps = {
+  content: string
+  icon?: string
+  onClick: () => void
+}
+
+const CTA = ({ content, icon, onClick }: CTAProps) => {
   return (
-    <button className='cta'>
+    <button className='cta' onClick={onClick}>
       {icon && <img className='cta__img' src={icon} alt='icon' />}
       {content}
     </button>

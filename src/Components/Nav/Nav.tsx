@@ -1,15 +1,14 @@
-import { useContext } from "react"
-import { AppContext } from "../Context/AppContext"
 import Links from "../Links/Links"
 import "./nav.scss"
 
 type NavProps = {
+  children: any
+  linksNames: string[]
+  userAvatarSrc: string
   toggleMenu: () => void
 }
 
-const Nav = ({ toggleMenu }: NavProps) => {
-  const { linksNames, userAvatarSrc } = useContext(AppContext)
-
+const Nav = ({ children, linksNames, userAvatarSrc, toggleMenu }: NavProps) => {
   return (
     <nav className='nav'>
       <div className='nav__logo-container'>
@@ -35,9 +34,10 @@ const Nav = ({ toggleMenu }: NavProps) => {
         <img
           className='nav__user-avatar'
           src={userAvatarSrc}
-          alt='user profile avatar'
+          alt='user avatar'
         />
       </div>
+      {children}
     </nav>
   )
 }
