@@ -6,9 +6,10 @@ type NavProps = {
   linksNames: string[]
   userAvatarSrc: string
   toggleMenu: () => void
+  toggleCart: () => void
 }
 
-const Nav = ({ children, linksNames, userAvatarSrc, toggleMenu }: NavProps) => {
+const Nav = ({ children, linksNames, userAvatarSrc, toggleMenu, toggleCart}: NavProps) => {
   return (
     <nav className='nav'>
       <div className='nav__logo-container'>
@@ -30,6 +31,7 @@ const Nav = ({ children, linksNames, userAvatarSrc, toggleMenu }: NavProps) => {
           className='nav__cart-icon'
           src='./images/icon-cart.svg'
           alt='cart icon'
+          onClick={toggleCart}
         />
         <img
           className='nav__user-avatar'

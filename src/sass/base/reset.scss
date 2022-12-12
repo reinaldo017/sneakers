@@ -12,6 +12,11 @@ html {
   font-family: typography.$font-1;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
 /* Remove default margin */
 body,
 h1,
@@ -58,6 +63,7 @@ a:not([class]) {
 img,
 picture {
   display: block;
+  max-width: 100%;
 }
 
 /* Inherit fonts for inputs and buttons */

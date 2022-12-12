@@ -1,38 +1,40 @@
 import "./cartItem.scss"
 import { Image } from "../../types/types"
 
-type CartItemProps = {
+type ItemType = {
   name: string
-  price: number
+  finalPrice: number
   quantity: number
   image: Image
+}
+
+type CartItemProps = {
+  item: ItemType
   removeFromCart: (itemName: string) => void
 }
 
-const CartItem = ({
-  name,
-  price,
-  quantity,
-  image,
-  removeFromCart,
-}: CartItemProps) => {
-  const total = price * quantity
-
+const CartItem = ({ item, removeFromCart }: CartItemProps) => {
   return (
     <li className='item'>
-      <img src={image.src} alt={image.alt} />
+      <img
+        className='item__img'
+        src={item.image.src}
+        alt={item.image.alt}
+      />
       <div className='item__info'>
-        <p>{name}</p>
+        <p>{item.name}</p>
         <p>
-          {`${price} x ${quantity} `}
-          <span className='item__total'>{total}</span>
+          {` $${item.finalPrice} x ${item.quantity} `}
+          <span className='item__total'>
+            ${item.finalPrice * item.quantity}
+          </span>
         </p>
       </div>
       <img
         className='item__delete'
         src='./images/icon-delete.svg'
         alt='trashcan icon'
-        onClick={() => removeFromCart(name)}
+        onClick={() => removeFromCart(item.name)}
       />
     </li>
   )

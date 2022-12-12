@@ -8,8 +8,16 @@ type CTAProps = {
 
 const CTA = ({ content, icon, onClick }: CTAProps) => {
   return (
-    <button className='cta' onClick={onClick}>
-      {icon && <img className='cta__img' src={icon} alt='icon' />}
+    <button
+      className='cta'
+      onClick={onClick}>
+      {icon && (
+        <img
+          className='cta__img'
+          src={icon}
+          alt='icon'
+        />
+      )}
       {content}
     </button>
   )

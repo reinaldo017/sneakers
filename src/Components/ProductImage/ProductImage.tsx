@@ -1,7 +1,11 @@
 import { useState } from "react"
-import { ProductImageProps } from "../../types/types"
 import MobileCarousel from "../MobileCarousel/MobileCarousel"
 import DesktopCarousel from "../DesktopCarousel/DesktopCarousel"
+import { Image } from "../../types/types"
+
+type ProductImageProps = {
+  images: Image[]
+}
 
 const ProductImage = ({ images }: ProductImageProps) => {
   const [activeImageIndex, setCurrentImageIndex] = useState(0)

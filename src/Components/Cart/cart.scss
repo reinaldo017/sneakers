@@ -1,0 +1,49 @@
+@use "../../sass/base/colors";
+@use "../../sass/base/breakpoints";
+.cart {
+  position: absolute;
+  z-index: 100;
+  top: 4.5rem;
+  width: 100%;
+  max-width: 22.5rem;
+  border-radius: 6px;
+  background-color: colors.$white;
+  box-shadow: 0 6px 8px colors.$light-black;
+
+  &--hidden {
+    display: none;
+  }
+
+  @media (min-width: breakpoints.$s) {
+    top: 70%;
+    right: 0;
+  }
+
+  &__header {
+    padding: 1rem 0;
+    border-bottom: 1px solid colors.$light-black;
+  }
+
+  &__title {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  &__empty {
+    padding: 5rem 0;
+    text-align: center;
+    font-weight: 900;
+    color: colors.$dark-grayish-blue;
+  }
+
+  &__body {
+    width: 90%;
+    margin: 0 auto;
+    padding: 1.5rem 0;
+  }
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+}

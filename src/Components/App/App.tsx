@@ -1,69 +1,62 @@
 import React from "react"
 import { useState } from "react"
-import Nav from "../Nav/Nav"
-import Product from "../Product/Product"
-import MobileMenu from "../MobileMenu/MobileMenu"
+import useInfo from "./useInfo"
 import Cart from "../Cart/Cart"
 import CartItem from "../CartItem/CartItem"
-import { Image } from "../../types/types"
+import Product from "../Product/Product"
+import ProductImage from "../ProductImage/ProductImage"
+import ProductInfo from "../ProductInfo/ProductInfo"
+import MobileMenu from "../MobileMenu/MobileMenu"
+import Nav from "../Nav/Nav"
 
-type ProductType = {
-  name: string
-  description: string
-  price: number
-  discount: number
-  stock: number
-  images: Image[]
-}
-
-const productInfo = {
-  name: "Fall Limited Editon Sneakers",
-  description:
-    "These low-profile sneakers are your perfect casual weat companion. Featuring a durable rubber outer sole, they'll withstand everything the weather can offer.",
-  price: 250.0,
-  discount: 50,
-  stock: 4,
-  images: [
-    {
-      src: "./images/image-product-1.jpg",
-      alt: "white and brown sneakers with orange background",
-    },
-    {
-      src: "./images/image-product-2.jpg",
-      alt: "white and brown sneakers with white rocks and stick",
-    },
-    {
-      src: "./images/image-product-3.jpg",
-      alt: "white and brown sneakers with orange background and rocks",
-    },
-    {
-      src: "./images/image-product-4.jpg",
-      alt: "white and brown sneaker with orange background and white rocks, side view",
-    },
-  ],
-}
-
-const userAvatarSrc = "./images/image-avatar.png"
-
-const linksNames = ["Collections", "Men", "Women", "About", "Contact"]
+import { ItemType } from "../../types/types"
 
 const App = () => {
-  const [showMenu, setShowMenu] = useState(false)
+  const { productInfo, linksNames, userAvatarSrc } = useInfo()
   const [product, setProduct] = useState(productInfo)
-  const [itemsSelected, setItemsSelected] = useState<any[]>([])
+  const [showMenu, setShowMenu] = useState(false)
+  const [showCart, setShowCart] = useState(false)
+  const [cartItems, setCartItems] = useState<any[]>([])
 
   const toggleMenu = () => {
     setShowMenu(!showMenu)
   }
 
-  const addToCart = (product: ProductType, quantity: number) => {
-    setItemsSelected((prev) => [...prev, product])
+  const toggleCart = () => {
+    setShowCart(!showCart)
+  }
+
+  const substractfromStock = (buyed: number) => {
+    setProduct(prev => {
+      const newStock = prev.stock - buyed
+      return {
+        ...prev,
+        stock: newStock,
+      }
+    })
+  }
+
+  const addToCart = (item: ItemType) => {
+    if (item.quantity === 0) return
+
+    if (cartItems.some(cartItem => cartItem.name === item.name)) {
+      setCartItems(prev =>
+        prev.map(cartItem =>
+          cartItem.name === item.name
+            ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
+            : cartItem
+        )
+      )
+    } else {
+      setCartItems(prev => [...prev, item])
+    }
+
+    substractfromStock(item.quantity)
+    setShowCart(true)
   }
 
   const removeFromCart = (itemName: string) => {
-    setItemsSelected((prevItems) =>
-      prevItems.filter((item) => item.name !== itemName)
-    )
+    setCartItems(prevItems => prevItems.filter(item => item.name !== itemName))
   }
 
   return (
@@ -76,22 +69,26 @@ const App = () => {
       <Nav
         linksNames={linksNames}
         userAvatarSrc={userAvatarSrc}
-        toggleMenu={toggleMenu}>
-        <Cart>
-          {itemsSelected.map((item) => (
+        toggleMenu={toggleMenu}
+        toggleCart={toggleCart}>
+        <Cart visible={showCart}>
+          {cartItems.map(item => (
             <CartItem
               key={item.name}
-              name={item.name}
-              price={item.price}
-              quantity={item.quantity}
-              image={item.images[0]}
+              item={item}
               removeFromCart={removeFromCart}
             />
           ))}
         </Cart>
       </Nav>
       <main>
-        <Product product={product} addToCart={addToCart} />
+        <Product>
+          <ProductImage images={product.images} />
+          <ProductInfo
+            product={product}
+            addToCart={addToCart}
+          />
+        </Product>
       </main>
     </>
   )
