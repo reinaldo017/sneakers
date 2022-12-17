@@ -1,5 +1,5 @@
 import { useState } from "react"
-import useInfo from "./useInfo"
+import useInfo from "./useInfo.js"
 import Cart from "../Cart/Cart"
 import CartItem from "../CartItem/CartItem"
 import Product from "../Product/Product"
