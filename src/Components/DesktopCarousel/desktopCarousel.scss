@@ -3,7 +3,6 @@
 
 .desktop-carousel {
   display: none;
-  width: 45%;
 
   @media screen and (min-width: breakpoints.$l) {
     display: block;
@@ -12,6 +11,7 @@
   &__main-img {
     max-width: 100%;
     border-radius: 15px;
+    cursor: pointer;
   }
 
   .thumbnails {

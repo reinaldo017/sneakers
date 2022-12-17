@@ -8,10 +8,9 @@
   grid-auto-columns: 1fr;
   align-items: center;
   width: 90%;
-  max-width: 440px;
 
-  @media screen and (min-width: breakpoints.$l) {
-    width: 45%;
+  @media (min-width: breakpoints.$l) {
+    width: 100%;
   }
 
   &__manufacturer {
@@ -77,5 +76,9 @@
     flex-wrap: wrap;
     gap: 1rem;
     margin-top: 1rem;
+
+    @media (min-width: breakpoints.$l) {
+      flex-wrap: nowrap;
+    }
   }
 }

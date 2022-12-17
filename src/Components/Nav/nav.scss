@@ -1,5 +1,6 @@
 @use "../../sass/base/breakpoints";
 @use "../../sass/base/colors";
+@use "../../sass/base/typography";
 
 .nav {
   display: flex;
@@ -8,8 +9,12 @@
   position: relative;
   width: 90%;
   max-width: 62.5rem;
-  padding: 6% 0;
+  padding: 6% 0 4%;
   margin: 0 auto;
+
+  @media (min-width: breakpoints.$l) {
+    margin-bottom: 6rem;
+  }
 
   &__logo-container {
     display: flex;
@@ -37,15 +42,26 @@
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
+    position: relative;
   }
 
   &__cart-icon {
     cursor: pointer;
   }
 
+  &__cart-bubble {
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    padding: 0.1em 0.5em;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    background-color: colors.$orange;
+    color: colors.$white;
+  }
+
   &__user-avatar {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 2.5em;
     cursor: pointer;
 
     &:active {

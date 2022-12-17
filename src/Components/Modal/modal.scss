@@ -1,0 +1,57 @@
+@use "../../sass/base/colors";
+@use "../../sass//base/breakpoints";
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background-color: colors.$black;
+  opacity: 0.8;
+
+  @media (min-width: breakpoints.$l) {
+    display: block;
+  }
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 50%;
+  top: 50%;
+  width: 60vh;
+  transform: translate(-50%, -50%);
+
+  @media (min-width: breakpoints.$l) {
+    display: block;
+  }
+
+  &__close {
+    width: 1rem;
+    margin-left: auto;
+    margin-bottom: 1rem;
+    filter: invert(100%) sepia(0%) saturate(7491%) hue-rotate(60deg)
+      brightness(116%) contrast(95%);
+    cursor: pointer;
+  }
+
+  &__arrow {
+    position: absolute;
+    z-index: 10;
+    top: 40%;
+    padding: 0.9em 1em;
+    border-radius: 50%;
+    background-color: colors.$white;
+    cursor: pointer;
+
+    &--prev {
+      transform: translateX(-1.5rem);
+    }
+
+    &--next {
+      right: 0;
+      transform: translateX(1.5rem);
+    }
+  }
+}

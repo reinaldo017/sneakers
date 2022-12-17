@@ -13,7 +13,11 @@
 
   &--visible {
     display: block;
-    opacity: 0.5;
+    opacity: 0.8;
+
+    @media (min-width: breakpoints.$l) {
+      display: none;
+    }
   }
 }
 
@@ -27,6 +31,10 @@
   background-color: colors.$white;
   transition: width 300ms linear;
   overflow: hidden;
+
+  @media (min-width: breakpoints.$l) {
+    display: none;
+  }
 
   &--visible {
     width: 70%;
